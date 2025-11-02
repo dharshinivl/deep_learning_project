@@ -1,7 +1,10 @@
-timm>=0.9.12
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
 opencv-python-headless>=4.8.0.76
-pandas>=2.0.0
+torch>=2.1.0
+torchvision>=0.16.0
 numpy>=1.24.0
-tqdm>=4.66.0
-kaggle>=1.6.0
+python-multipart>=0.0.9
+
+
 

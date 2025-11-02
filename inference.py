@@ -39,7 +39,9 @@ class FaceDetector:
         faces = self.cascade.detectMultiScale(gray, scaleFactor=1.05, minNeighbors=3)
         if len(faces) == 0:
             return None
-        x, y, w, h = max(faces, key=lambda f: f[2] * f[3])
+        # Use largest face
+        largest_face = max(faces, key=lambda f: f[2] * f[3])
+        x, y, w, h = largest_face
         h_img, w_img = img_rgb.shape[:2]
         m = self.margin
         x1 = max(0, int(x) - m)
@@ -152,5 +154,6 @@ def gradcam_on_image(model: EfficientNetV2Binary, pre: Preprocessor, image_bgr: 
 def encode_image_b64(img_bgr: np.ndarray) -> str:
     _, buf = cv2.imencode('.jpg', img_bgr)
     return base64.b64encode(buf.tobytes()).decode('utf-8')
+
 
 
